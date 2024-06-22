@@ -1,0 +1,5 @@
+node_modules
+/lib
+credentials.json
+yarn.lock
+yarn-error.log
