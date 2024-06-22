@@ -3,6 +3,7 @@ import FetchHTTPClient from "./clients/FetchHttpClient";
 import CloudflareR2Client from "./services/CloudFlareR2Client";
 import { IBucket, LocationHint, StorageClass } from "./types/common";
 import { R2Credentials } from "./types/credentials";
+import { BucketBase } from "./types/rawResponse";
 
 export class CloudflareR2 {
 	endpoint: string = "https://api.cloudflare.com";
@@ -18,14 +19,12 @@ export class CloudflareR2 {
 		);
 	}
 
-	async listBuckets(): Promise<IBucket[]> {
+	async listBuckets(): Promise<BucketBase[]> {
 		const bucketListResponse = await this.r2client.listBucketsAsync();
 		if (!bucketListResponse.success) {
 			throw bucketListResponse.errors;
 		}
-		return bucketListResponse.result.buckets.map(
-			(bucket) => new Bucket(bucket, this.r2client)
-		);
+		return bucketListResponse.result.buckets;
 	}
 
 	async getBucket(bucketName: string): Promise<IBucket> {
