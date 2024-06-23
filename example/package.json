@@ -9,5 +9,8 @@
     "@types/node": "^20.14.8",
     "tsx": "^4.15.7",
     "typescript": "^5.5.2"
+  },
+  "dependencies": {
+    "@nurbxfit/cloudflare-r2": "^0.0.2"
   }
 }

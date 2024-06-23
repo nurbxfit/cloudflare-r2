@@ -34,22 +34,22 @@ async function main() {
 		// console.log("Object:", bucketObject);
 
 		// ======= EXAMPLE UPLOAD OBJECT TO BUCKET ===============
-		const objectToUpload = fs.createReadStream("./example.txt");
+		// const objectToUpload = fs.createReadStream("./example.txt");
 
-		const uploaded = await bucket.uploadObject(
-			"example.txt",
-			objectToUpload,
-			"text/plain"
-		);
-		console.log("UploadedText:", uploaded);
+		// const uploaded = await bucket.uploadObject(
+		// 	"example.txt",
+		// 	objectToUpload,
+		// 	"text/plain"
+		// );
+		// console.log("UploadedText:", uploaded);
 
-		const imageToUpload = fs.createReadStream("./images.jpeg");
-		const uploadedImage = await bucket.uploadObject(
-			"gintoki.jpeg",
-			imageToUpload,
-			"image/jpeg"
-		);
-		console.log("uploadedImage:", uploadedImage);
+		// const imageToUpload = fs.createReadStream("./images.jpeg");
+		// const uploadedImage = await bucket.uploadObject(
+		// 	"gintoki.jpeg",
+		// 	imageToUpload,
+		// 	"image/jpeg"
+		// );
+		// console.log("uploadedImage:", uploadedImage);
 
 		// ========= EXAMPLE DELETE OBJECT FROM BUCKET ===========
 		// const deletedObject = await bucket.deleteObject("gintoki.jpeg");
@@ -62,6 +62,18 @@ async function main() {
 		// ]);
 
 		// console.log("DeletedObjects:", deletedObjects);
+
+		// ========= EXAMPLE GET BUCKET's CUSTOM DOMAINS =========
+		const r2LevelsDomains = await r2.getBucketCustomDomainsURL("example");
+		console.log("r2LevelsDomains:", r2LevelsDomains);
+
+		const customDomains = await bucket.getCustomDomains();
+		console.log("customDomains:", customDomains);
+
+		// ========= EXAMPLE GET OBJECT PUBLIC URL ===============
+		const objectKey = "24749830.jpeg";
+		const publicURLs = await bucket.getObjectPublicURLs(objectKey);
+		console.log("publicURLs:", publicURLs);
 	} catch (error) {
 		console.log(error);
 	}

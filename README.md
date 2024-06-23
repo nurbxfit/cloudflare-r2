@@ -1,7 +1,8 @@
+<center><img src="https://capsule-render.vercel.app/api?type=rounded&height=300&color=gradient&text=Cloudflare-R2&textBg=false&section=header&reversal=false&animation=fadeIn" /></center>
+
 # Cloudflare-R2 Node Client SDK
 
-This is a minimal node.js client for cloudflare R2 API. I try to make a simple minimal http client for R2.
-Some example use the AWS-sdk to manage R2, but I decided to create one using just node.js fetch.
+This is a minimal Node.js client for Cloudflare R2 API. It provides a simple HTTP client to interact with R2 using Node.js fetch. I Try to make it as minimal with 0 dependencies.
 
 # Installation
 
@@ -151,3 +152,42 @@ try {
 	// ... handle the error
 }
 ```
+
+## Get Bucket Custom Domain URL
+
+If custom domain was enabled in the R2 Bucket settings.
+We can get the custom domain url using this method
+
+### R2 level
+
+Using R2 to get custom domain by specifying the bucket name as parameter.
+
+```ts
+const bucketName = "example";
+const bucketCustomDomains = await r2.getBucketCustomDomainsURL(bucketName);
+console.log(bucketCustomDomains); // result:  [ 'https://custom.domain.com' ]
+```
+
+### Bucket level
+
+using bucket level without having to specify the bucket name
+
+```ts
+const customDomains = await bucket.getCustomDomains();
+console.log(customDomains); // result:  [ 'https://custom.domain.com' ]
+```
+
+## Get Object Public URL
+
+when we setup the custom domain, we are able to access our object publicly using the custom domain URL.
+We can get this domain URL using the following method in bucket level.
+
+```ts
+const objectKey = "24749830.jpeg";
+const publicURLs = await bucket.getObjectPublicURLs(objectKey);
+console.log(publicURLs); // result : [ 'https://custom.domain.com/24749830.jpeg' ]
+```
+
+# More Example Usage
+
+Check the `/example/index.ts` for some example usage.
