@@ -187,3 +187,7 @@ const objectKey = "24749830.jpeg";
 const publicURLs = await bucket.getObjectPublicURLs(objectKey);
 console.log(publicURLs); // result : [ 'https://custom.domain.com/24749830.jpeg' ]
 ```
+
+# More Example Usage
+
+Check the `/example/index.ts` for some example usage.
