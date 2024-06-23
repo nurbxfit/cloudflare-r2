@@ -1,4 +1,5 @@
 import { IHTTPClient } from "../types/IHTTPClient";
+import ClientError from "../utils/ClientError";
 
 class FetchHTTPClient implements IHTTPClient {
 	private headers: Headers;
@@ -14,16 +15,25 @@ class FetchHTTPClient implements IHTTPClient {
 			const contentType = response.headers.get("Content-Type");
 
 			if (!response.ok) {
-				throw new Error(
-					`Request failed with status ${response.status}: ${response.statusText}`
-				);
+				const errorMessage = `HTTP request failed with status ${response.status}: ${response.statusText}`;
+
+				const responseBody = await response.json();
+				if (!responseBody.success && responseBody.errors) {
+					const clientError = new ClientError(
+						errorMessage,
+						responseBody.errors
+					);
+					throw clientError;
+				} else {
+					throw new Error(errorMessage);
+				}
 			}
 			if (contentType && this.isMediaType(contentType)) {
 				return await response.arrayBuffer();
 			}
 			return await response.json();
 		} catch (error: any) {
-			throw new Error(`HTTP request failed: ${error.message}`);
+			throw error;
 		}
 	}
 
@@ -32,7 +42,7 @@ class FetchHTTPClient implements IHTTPClient {
 			contentType.startsWith("image/") ||
 			contentType.startsWith("video/") ||
 			contentType.startsWith("audio/") ||
-			contentType.startsWith("application/") ||
+			!contentType.startsWith("application/json") ||
 			contentType.startsWith("application/octet-stream")
 		);
 	}
