@@ -117,11 +117,12 @@ export interface IBucketObject {
 ## Upload object to bucket
 
 ```ts
-const objectKey = "mypicture.jpg";
-const myObject = getData(); // Replace with your binary data
+const objectKey = "gintoki.jpeg";
+const myObject = fs.createReadStream("./images.jpeg"); // Replace with your binary data
 
 try {
-	const uploaded = await bucket.uploadObject(objectKey, myObject);
+	const uploaded = await bucket.uploadObject(objectKey, myObject, "image/jpeg");
+	console.log("uploadedImage:", uploadedImage);
 } catch (error) {
 	//... handle the error
 }
@@ -133,6 +134,7 @@ try {
 const objectKey = "mypicture.jpg";
 try {
 	const deleted = await bucket.deleteObject(objectKey);
+	console.log("Deleted:", deletedObject);
 } catch (error) {
 	// ... handle the error
 }
@@ -143,7 +145,8 @@ try {
 ```ts
 const objectKeys = ["mypicture.jpg", "myResume.pdf", "myVideo.mp4"];
 try {
-	const deleted = await bucket.deleteObject(objectKeys);
+	const deleted = await bucket.deleteObjects(objectKeys);
+	console.log("DeletedObjects:", deletedObjects);
 } catch (error) {
 	// ... handle the error
 }
