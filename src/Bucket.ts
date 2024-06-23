@@ -34,7 +34,19 @@ export default class Bucket implements IBucket {
 		return bucketObject;
 	}
 
-	async uploadObject(objectKey: string, objectBin: BinaryData): Promise<any> {}
+	async uploadObject(
+		objectKey: string,
+		objectBin: BinaryData,
+		contentType?: string
+	): Promise<any> {
+		const uploadBucketResponse = await this.client.putBucketObject(
+			this.name,
+			objectKey,
+			objectBin,
+			contentType
+		);
+		return uploadBucketResponse.result;
+	}
 
 	async deleteObject(objectKey: string): Promise<any> {}
 	async deleteObjects(objectKeys: string[]): Promise<any> {}

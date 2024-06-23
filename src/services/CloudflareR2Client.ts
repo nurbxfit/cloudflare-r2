@@ -102,14 +102,19 @@ export default class CloudflareR2Client {
 	async putBucketObject(
 		bucketName: string,
 		objectKey: string,
-		objectBin: BinaryData
+		objectBin: BinaryData,
+		contentType?: string
 	): Promise<UploadObjectResponse> {
 		const url = new URL(
 			`${this.endpoint}/buckets/${bucketName}/objects/${objectKey}`
 		);
+
+		const headers = this.getHeaders();
+		headers["Content-Type"] = contentType ?? "application/octet-stream";
+
 		return this.httpClient.request(url, {
 			method: "PUT",
-			headers: this.getHeaders(),
+			headers,
 			body: objectBin,
 		});
 	}
