@@ -1,4 +1,4 @@
-import { CloudflareR2, R2Credentials } from "@nurbxfit/cloudflare-r2-node";
+import { CloudflareR2, R2Credentials } from "@nurbxfit/cloudflare-r2";
 import credentialsJson from "./credentials.json";
 import fs from "fs";
 

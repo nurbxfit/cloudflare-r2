@@ -1,5 +1,5 @@
 {
-  "name": "@nurbxfit/cloudflare-r2-node",
+  "name": "@nurbxfit/cloudflare-r2",
   "version": "0.0.1",
   "description": "Simple nodejs client SDK for cloudflare r2",
   "main": "./lib/index.js",

@@ -8,13 +8,13 @@ Some example use the AWS-sdk to manage R2, but I decided to create one using jus
 npm
 
 ```
-npm install cloudflare-r2-node-sdk
+npm install @nurbxfit/cloudflare-r2
 ```
 
 yarn
 
 ```
-yarn add cloudflare-r2-node-sdk
+yarn add @nurbxfit/cloudflare-r2
 ```
 
 # Usage

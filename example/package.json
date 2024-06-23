@@ -1,7 +1,7 @@
 {
   "name": "example",
   "version": "1.0.0",
-  "description": "Example usage of @nurbxfit/cloudflare-r2-node ",
+  "description": "Example usage of @nurbxfit/cloudflare-r2",
   "main": "index.js",
   "author": "Nurfitri",
   "license": "ISC",
