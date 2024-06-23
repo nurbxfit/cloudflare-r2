@@ -1,7 +1,8 @@
+<center><img src="https://capsule-render.vercel.app/api?type=rounded&height=300&color=gradient&text=Cloudflare-R2&textBg=false&section=header&reversal=false&animation=fadeIn" /></center>
+
 # Cloudflare-R2 Node Client SDK
 
-This is a minimal node.js client for cloudflare R2 API. I try to make a simple minimal http client for R2.
-Some example use the AWS-sdk to manage R2, but I decided to create one using just node.js fetch.
+This is a minimal Node.js client for Cloudflare R2 API. It provides a simple HTTP client to interact with R2 using Node.js fetch. I Try to make it as minimal with 0 dependencies.
 
 # Installation
 
