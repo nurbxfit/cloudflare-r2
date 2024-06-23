@@ -1,6 +1,6 @@
 import Bucket from "./Bucket";
 import FetchHTTPClient from "./clients/FetchHttpClient";
-import CloudflareR2Client from "./services/CloudFlareR2Client";
+import CloudflareR2Client from "./services/CloudflareR2Client";
 import { IBucket, LocationHint, StorageClass } from "./types/common";
 import { R2Credentials } from "./types/credentials";
 import { BucketBase } from "./types/rawResponse";

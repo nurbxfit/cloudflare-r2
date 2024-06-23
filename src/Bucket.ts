@@ -1,4 +1,4 @@
-import CloudflareR2Client from "./services/CloudFlareR2Client";
+import CloudflareR2Client from "./services/CloudflareR2Client";
 import { IBucket, IBucketObject, StorageClass } from "./types/common";
 import { BucketBase, BucketResult } from "./types/rawResponse";
 
