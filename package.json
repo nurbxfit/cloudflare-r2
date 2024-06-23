@@ -1,9 +1,12 @@
 {
-  "name": "cloudflare-r2-node",
+  "name": "@nurbxfit/cloudflare-r2-node",
   "version": "0.0.1",
   "description": "Simple nodejs client SDK for cloudflare r2",
   "main": "./lib/index.js",
-  "repository": "https://github.com/nurbxfit/cloudflare-r2.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nurbxfit/cloudflare-r2.git"
+  },
   "author": "nurbxfit <nurbxfit@gmail.com>",
   "license": "ISC",
   "scripts": {
@@ -15,5 +18,16 @@
     "@types/node": "^20.14.8",
     "rimraf": "^5.0.7",
     "typescript": "^5.5.2"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/nurbxfit/cloudflare-r2/issues"
+  },
+  "homepage": "https://github.com/nurbxfit/cloudflare-r2#readme",
+  "dependencies": {},
+  "keywords": [
+    "cloudflare",
+    "cloudflare-r2",
+    "r2",
+    "node"
+  ]
 }
