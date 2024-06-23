@@ -130,4 +130,13 @@ export default class CloudflareR2Client {
 			body: JSON.stringify([objectKey]),
 		});
 	}
+
+	async deleteBucketObjects(bucketName: string, objectKeys: string[]) {
+		const url = new URL(`${this.endpoint}/buckets/${bucketName}/objects`);
+		return this.httpClient.request(url, {
+			method: "DELETE",
+			headers: this.getHeaders(),
+			body: JSON.stringify(objectKeys),
+		});
+	}
 }

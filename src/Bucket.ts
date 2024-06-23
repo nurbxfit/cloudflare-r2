@@ -48,6 +48,18 @@ export default class Bucket implements IBucket {
 		return uploadBucketResponse.result;
 	}
 
-	async deleteObject(objectKey: string): Promise<any> {}
-	async deleteObjects(objectKeys: string[]): Promise<any> {}
+	async deleteObject(objectKey: string): Promise<any> {
+		const deletedBucketResponse = await this.client.deleteBucketObject(
+			this.name,
+			objectKey
+		);
+		return deletedBucketResponse.result[0];
+	}
+	async deleteObjects(objectKeys: string[]): Promise<any> {
+		const deletedBucketResponse = await this.client.deleteBucketObjects(
+			this.name,
+			objectKeys
+		);
+		return deletedBucketResponse.result;
+	}
 }
