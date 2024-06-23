@@ -37,6 +37,20 @@ export type CreateBucketResponse = BaseResponse & {
 
 export type DeleteBucketResponse = BaseResponse;
 
+export type GetBucketCustomDomainResponse = BaseResponse & {
+	result: {
+		domains: {
+			domain: string;
+			status: {
+				ssl: string;
+				ownership: string;
+			};
+			zoneId: string;
+			zoneName: string;
+		}[];
+	};
+};
+
 export type GetBucketObjectsResponse = BaseResponse & {
 	result: IBucketObject[];
 };

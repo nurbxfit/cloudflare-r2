@@ -4,6 +4,7 @@ import {
 	CreateBucketResponse,
 	DeleteBucketResponse,
 	DeleteObjectResponse,
+	GetBucketCustomDomainResponse,
 	GetBucketObjectResponse,
 	GetBucketObjectsResponse,
 	GetBucketResponse,
@@ -59,6 +60,19 @@ export default class CloudflareR2Client {
 		const url = new URL(`${this.endpoint}/buckets/${bucketName}`);
 		return this.httpClient.request(url, {
 			method: "DELETE",
+			headers: this.getHeaders(),
+		});
+	}
+
+	async getBucketCustomDomains(
+		bucketName: string
+	): Promise<GetBucketCustomDomainResponse> {
+		const url = new URL(
+			`${this.endpoint}/buckets/${bucketName}/custom_domains`
+		);
+
+		return this.httpClient.request(url, {
+			method: "GET",
 			headers: this.getHeaders(),
 		});
 	}

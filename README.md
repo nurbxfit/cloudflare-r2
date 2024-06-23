@@ -151,3 +151,38 @@ try {
 	// ... handle the error
 }
 ```
+
+## Get Bucket Custom Domain URL
+
+If custom domain was enabled in the R2 Bucket settings.
+We can get the custom domain url using this method
+
+### R2 level
+
+Using R2 to get custom domain by specifying the bucket name as parameter.
+
+```ts
+const bucketName = "example";
+const bucketCustomDomains = await r2.getBucketCustomDomainsURL(bucketName);
+console.log(bucketCustomDomains); // result:  [ 'https://custom.domain.com' ]
+```
+
+### Bucket level
+
+using bucket level without having to specify the bucket name
+
+```ts
+const customDomains = await bucket.getCustomDomains();
+console.log(customDomains); // result:  [ 'https://custom.domain.com' ]
+```
+
+## Get Object Public URL
+
+when we setup the custom domain, we are able to access our object publicly using the custom domain URL.
+We can get this domain URL using the following method in bucket level.
+
+```ts
+const objectKey = "24749830.jpeg";
+const publicURLs = await bucket.getObjectPublicURLs(objectKey);
+console.log(publicURLs); // result : [ 'https://custom.domain.com/24749830.jpeg' ]
+```

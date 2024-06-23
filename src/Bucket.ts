@@ -2,6 +2,7 @@ import CloudflareR2Client from "./services/CloudflareR2Client";
 import { IBucket, IBucketObject, StorageClass } from "./types/common";
 import { BucketBase, BucketResult } from "./types/rawResponse";
 
+// seems like unnecessary to implement, but why not
 export default class Bucket implements IBucket {
 	name: string;
 	creationDate: Date;
@@ -31,6 +32,9 @@ export default class Bucket implements IBucket {
 		const bucketObject = bucketObjectsResponse.result.find(
 			(object: IBucketObject) => object.key == objectKey
 		);
+
+		// not sure want to do something like this or just return nothing if not found.
+		// if (!bucketObject) throw new Error("Object not found!");
 		return bucketObject;
 	}
 
@@ -61,5 +65,26 @@ export default class Bucket implements IBucket {
 			objectKeys
 		);
 		return deletedBucketResponse.result;
+	}
+
+	async getCustomDomains(): Promise<string[]> {
+		const getCustomDomainResponse = await this.client.getBucketCustomDomains(
+			this.name
+		);
+		return getCustomDomainResponse.result.domains.map((d) => {
+			if (d.status.ssl !== "active") {
+				return `http://${d.domain}`;
+			}
+			return `https://${d.domain}`;
+		});
+	}
+
+	async getObjectPublicURLs(objectKey: string): Promise<string[]> {
+		const objectCustomDomains = await this.getCustomDomains();
+		const foundObject = await this.getObject(objectKey);
+
+		return !!foundObject
+			? objectCustomDomains.map((domain) => `${domain}/${objectKey}`)
+			: [];
 	}
 }

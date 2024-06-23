@@ -62,4 +62,17 @@ export class CloudflareR2 {
 		}
 		return createBucketResponse.result;
 	}
+
+	async getBucketCustomDomainsURL(bucketName: string): Promise<string[]> {
+		const getCustomDomainResponse = await this.r2client.getBucketCustomDomains(
+			bucketName
+		);
+
+		return getCustomDomainResponse.result.domains.map((d) => {
+			if (d.status.ssl !== "active") {
+				return `http://${d.domain}`;
+			}
+			return `https://${d.domain}`;
+		});
+	}
 }

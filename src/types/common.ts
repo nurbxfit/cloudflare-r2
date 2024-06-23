@@ -7,6 +7,7 @@ export type ResponseError = {
 	message: string;
 };
 
+// this interface maybe get deleted in future.
 // Interface representing a bucket in the storage system
 export interface IBucket {
 	name: string;
@@ -28,6 +29,12 @@ export interface IBucket {
 
 	// Method to delete multiple objects from the bucket by their names
 	deleteObjects(objectKeys: string[]): Promise<any>;
+
+	// Method to get custom domains URL from the bucket
+	getCustomDomains(): Promise<string[]>;
+
+	// Method to get object public URLs
+	getObjectPublicURLs(objectKey: string): Promise<string[]>;
 }
 
 // Interface representing an object within a bucket
