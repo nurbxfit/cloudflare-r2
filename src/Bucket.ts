@@ -1,9 +1,9 @@
 import CloudflareR2Client from "./services/CloudflareR2Client";
-import { IBucket, IBucketObject, StorageClass } from "./types/common";
+import { IBucketObject, StorageClass } from "./types/common";
 import { BucketBase, BucketResult } from "./types/rawResponse";
 
 // seems like unnecessary to implement, but why not
-export default class Bucket implements IBucket {
+export default class Bucket {
 	name: string;
 	creationDate: Date;
 	location?: string;

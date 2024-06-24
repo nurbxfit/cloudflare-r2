@@ -1,7 +1,7 @@
 import Bucket from "./Bucket";
 import FetchHTTPClient from "./clients/FetchHttpClient";
 import CloudflareR2Client from "./services/CloudflareR2Client";
-import { IBucket, LocationHint, StorageClass } from "./types/common";
+import { LocationHint, StorageClass } from "./types/common";
 import { R2Credentials } from "./types/credentials";
 import { BucketBase } from "./types/rawResponse";
 
@@ -27,7 +27,7 @@ export class CloudflareR2 {
 		return bucketListResponse.result.buckets;
 	}
 
-	async getBucket(bucketName: string): Promise<IBucket> {
+	async getBucket(bucketName: string): Promise<Bucket> {
 		const bucketResponse = await this.r2client.getBucketAsync(bucketName);
 		if (!bucketResponse.success) {
 			throw bucketResponse.errors;
